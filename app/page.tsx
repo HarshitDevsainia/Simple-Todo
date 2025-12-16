@@ -1,65 +1,161 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Home() {
+  const { data: session, status } = useSession();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-gradient-to-br from-zinc-900 via-black to-zinc-800 text-white">
+      {/* ================= NAVBAR ================= */}
+      <nav className="max-w-7xl mx-auto flex justify-between items-center px-6 py-6">
+        {/* Logo + Heading */}
+        <div className="flex items-center gap-2">
+          <div className="w-9 h-9 rounded-xl bg-black text-black flex items-center justify-center font-bold">
+            <img src="logo.png" alt="logo" />
+          </div>
+          <h1 className="text-xl font-semibold tracking-wide">SimpleTodo</h1>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+        {/* Auth Buttons */}
+        <div className="flex gap-4 items-center">
+          {status === "loading" ? null : session ? (
+            <>
+              <Link
+                href="/dashboard"
+                className="text-sm px-4 py-2 rounded-lg hover:bg-white/10 transition"
+              >
+                Dashboard
+              </Link>
+
+              <button
+                onClick={() => signOut({ callbackUrl: "/" })}
+                className="text-sm px-4 py-2 rounded-lg bg-red-500/90 text-white hover:bg-red-600 transition"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="text-sm px-4 py-2 rounded-lg hover:bg-white/10 transition"
+              >
+                Login
+              </Link>
+
+              <Link
+                href="/dashboard"
+                className="text-sm px-4 py-2 rounded-lg bg-white text-black font-medium hover:bg-zinc-200 transition"
+              >
+                Get Started
+              </Link>
+            </>
+          )}
+        </div>
+      </nav>
+
+      {/* ================= HERO ================= */}
+      <section className="max-w-7xl mx-auto px-6 pt-20 pb-28 text-center">
+        <span className="inline-block mb-6 px-4 py-1 rounded-full text-sm bg-white/10 text-white/80">
+          🔐 Secure • Fast • Minimal
+        </span>
+
+        <h2 className="text-5xl md:text-6xl font-bold leading-tight">
+          Organize your tasks.
+          <br />
+          <span className="text-zinc-400">Focus on what matters.</span>
+        </h2>
+
+        <p className="mt-6 max-w-2xl mx-auto text-lg text-zinc-400">
+          SimpleTodo helps you manage daily tasks with authentication, cloud
+          storage, and a distraction-free experience.
+        </p>
+
+        {/* CTA */}
+        <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+          {session ? (
+            <Link
+              href="/dashboard"
+              className="px-8 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition"
+            >
+              Go to Dashboard
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/dashboard"
+                className="px-8 py-3 rounded-xl bg-white text-black font-semibold hover:bg-zinc-200 transition"
+              >
+                Start for Free
+              </Link>
+
+              <Link
+                href="/login"
+                className="px-8 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition"
+              >
+                Login
+              </Link>
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* ================= FEATURES ================= */}
+      <section className="bg-black text-white">
+        <div className="max-w-7xl mx-auto px-6 py-24">
+          <h3 className="text-3xl font-bold text-center mb-14">
+            Why SimpleTodo?
+          </h3>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            <Feature
+              title="🔐 Secure Authentication"
+              desc="Modern authentication with protected routes and encrypted credentials."
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <Feature
+              title="⚡ Fast & Reliable"
+              desc="Powered by Next.js and MongoDB for high performance and scalability."
+            />
+            <Feature
+              title="🧘 Minimal & Clean UI"
+              desc="Glassmorphic design that keeps focus on productivity, not clutter."
+            />
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* ================= FOOTER ================= */}
+      <footer className="text-center py-8 text-sm text-zinc-400">
+        © 2025 SimpleTodo. Built with ❤️ using Next.js <br />
+        Developed by Harshit Soni
+      </footer>
+    </main>
+  );
+}
+
+/* ================= FEATURE CARD ================= */
+
+type FeatureProps = {
+  title: string;
+  desc: string;
+};
+
+function Feature({ title, desc }: FeatureProps) {
+  return (
+    <div
+      className="
+        rounded-2xl p-6 
+        bg-white/10 backdrop-blur-lg 
+        border border-white/20 
+        shadow-lg
+        hover:bg-white/15 hover:border-white/30
+        transition
+      "
+    >
+      <h3 className="text-lg font-semibold">{title}</h3>
+      <p className="mt-3 text-white/70">{desc}</p>
     </div>
   );
 }

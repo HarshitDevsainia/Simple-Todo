@@ -1,36 +1,167 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+### 🚀 SimpleTodo AI – Smart Todo App with AI Assist
 
-## Getting Started
+EduFlow AI is a modern Next.js Todo application with a premium glassmorphism UI and AI-powered features. It helps users manage tasks efficiently and improves productivity using AI assistance like task correction and smart suggestions.
 
-First, run the development server:
+### ✨ Features
+
+# 📝 Core Todo Features
+
+- ➕ Add new tasks
+
+- ✏️ Edit existing tasks
+
+- 🗑️ Delete tasks
+
+- ✅ Mark tasks as completed / pending
+
+- 🔍 Search tasks
+
+- 🎯 Filter tasks (All / Pending / Completed)
+
+- 💎 Modern glassmorphism UI
+
+- ⚡ Optimistic UI updates
+
+# 🤖 AI-Powered Features (Groq AI)
+
+- ✨ AI Assist – Improve/correct task text (grammar & spelling)
+
+- 🧠 Smart AI response using LLaMA 3.1 model
+
+- ⚡ Super-fast & free AI inference via Groq
+
+### 🎨 UI/UX
+
+- Glassmorphism design
+
+- Smooth hover & transition effects
+
+- Skeleton loaders while data loads
+
+- Responsive layout
+
+- Premium AI button with icon & loading state
+
+state
+
+### 🛠 Tech Stack
+
+# Frontend
+
+- Next.js (App Router)
+
+- React
+
+- TypeScript
+
+- Tailwind CSS
+
+- React Icons
+
+# Backend
+
+- Next.js API Routes
+
+- Groq AI SDK
+
+# Database
+
+- MongoDB
+
+- Mongoose
+
+### 📂 Project Structure
+
+```bash
+
+eduflow-ai/
+│── app/
+│ ├── api/
+│ │ ├── ai/
+│ │ │ └── correct/route.ts # AI correction API (Groq)
+│ │ └── todos/route.ts # Todo CRUD APIs
+│ ├── dashboard/ # Todo dashboard UI
+│ └── page.tsx # Home page
+│
+│── components/ # Reusable UI components
+│── public/
+│── styles/
+│── .env.local
+│── README.md
+│── package.json
+
+```
+
+## 🔐 Environment Variables
+
+Create a .env.local file in the root directory:
+
+```bash
+
+MONGODB_URI =
+NEXTAUTH_SECRET =
+NEXTAUTH_URL =
+GROQ_API_KEY =
+
+```
+
+### 🔑 Getting Groq API Key (FREE)
+
+- Go to 👉 https://console.groq.com
+
+- Login using Google/GitHub
+
+- Navigate to API Keys
+
+- Create a new API key
+
+- Copy and paste it into .env.local
+
+## ▶️ Getting Started
+
+# 1️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+# 2️⃣ Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App will run on:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# 🤖 AI Assist – How It Works
 
-## Learn More
+# Backend Logic
 
-To learn more about Next.js, take a look at the following resources:
+- Uses Groq LLaMA 3.1 model
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Corrects grammar and spelling
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Returns only the corrected sentence
 
-## Deploy on Vercel
+- Example API Request
+  {
+  "text": "i am lerning next js from 1 year"
+  }
+- Example Response
+  {
+  "corrected": "I have been learning Next.js for one year."
+  }
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### UX Flow
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- User types a task
+
+- Clicks ✨ AI Assist
+
+- AI corrects the text
+
+- Input is auto-updated

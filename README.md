@@ -1,6 +1,6 @@
-### 🚀 SimpleTodo AI – Smart Todo App with AI Assist
+### 🚀 SimpleTodo – Smart Todo App with AI Assist
 
-EduFlow AI is a modern Next.js Todo application with a premium glassmorphism UI and AI-powered features. It helps users manage tasks efficiently and improves productivity using AI assistance like task correction and smart suggestions.
+SimpleTodo is a modern Next.js Todo application with a premium glassmorphism UI and AI-powered features. It helps users manage tasks efficiently and improves productivity using AI assistance like task correction and smart suggestions.
 
 ### ✨ Features
 

@@ -15,14 +15,14 @@ export const authOptions: NextAuthOptions = {
 
       async authorize(credentials) {
         if (!credentials?.email || !credentials.password) {
-          throw new Error("Missing credentials");
+          return null; // ✅ no throw
         }
 
         await connectDB();
 
         const user = await User.findOne({ email: credentials.email });
         if (!user) {
-          throw new Error("User not found");
+          return null; // ✅ no throw
         }
 
         const isValid = await bcrypt.compare(
@@ -31,7 +31,7 @@ export const authOptions: NextAuthOptions = {
         );
 
         if (!isValid) {
-          throw new Error("Invalid password");
+          return null; // ✅ no throw
         }
 
         return {

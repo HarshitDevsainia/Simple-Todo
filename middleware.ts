@@ -11,9 +11,15 @@ export function middleware(req: NextRequest) {
   const secureCookieToken = req.cookies.get("__Secure-next-auth.session-token")?.value;
   const sessionToken = cookieToken || secureCookieToken;
 
+  console.log("Session Token",sessionToken)
+  console.log("cookie Token",cookieToken)
+
   if (req.nextUrl.pathname.startsWith("/dashboard") && !sessionToken) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
+
+  console.log("Next Response");
+  
 
   return NextResponse.next();
 }

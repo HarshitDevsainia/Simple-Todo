@@ -9,14 +9,33 @@ export default function Register() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function submit() {
-    await fetch("/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    router.push("/login");
+    setError("");
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error || "Registration failed");
+        setLoading(false);
+        return;
+      }
+
+      router.push("/login");
+    } catch (err) {
+      console.error("Registration error:", err);
+      setError("Something went wrong. Please try again later.");
+      setLoading(false);
+    }
   }
 
   return (
@@ -60,11 +79,16 @@ export default function Register() {
             />
           </div>
 
+          {error && (
+            <p className="text-red-600 text-center mt-2 font-medium">{error}</p>
+          )}
+
           <button
             onClick={submit}
-            className="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition"
+            disabled={loading}
+            className="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Register
+            {loading ? "Registering..." : "Register"}
           </button>
         </div>
 

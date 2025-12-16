@@ -2,11 +2,15 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const sessionToken =
-    req.cookies.get("next-auth.session-token")?.value ||
-    req.cookies.get("__Secure-next-auth.session-token")?.value;
+  const publicPaths = ["/login", "/api/auth"];
+  if (publicPaths.some(path => req.nextUrl.pathname.startsWith(path))) {
+    return NextResponse.next();
+  }
 
-  // Protect /dashboard routes
+  const cookieToken = req.cookies.get("next-auth.session-token")?.value;
+  const secureCookieToken = req.cookies.get("__Secure-next-auth.session-token")?.value;
+  const sessionToken = cookieToken || secureCookieToken;
+
   if (req.nextUrl.pathname.startsWith("/dashboard") && !sessionToken) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
@@ -14,7 +18,6 @@ export function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
-// Apply middleware only to /dashboard routes
 export const config = {
   matcher: ["/dashboard/:path*"],
 };

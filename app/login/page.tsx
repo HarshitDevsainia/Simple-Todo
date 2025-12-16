@@ -25,13 +25,12 @@ export default function Login() {
 
       if (res?.error) {
         setError(res.error);
-        setLoading(false);
       } else if (res?.ok) {
         router.push("/dashboard"); // manual redirect on success
       } else {
         setError("Login failed. Please try again.");
-        setLoading(false);
       }
+      setLoading(false);
     } catch (err) {
       console.error("Login error:", err);
       setError("Something went wrong. Please try again later.");

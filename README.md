@@ -125,7 +125,7 @@ GROQ_API_KEY =
 npm install
 ```
 
-# 2️⃣ Run Development Server
+### 2️⃣ Run Development Server
 
 ```bash
 npm run dev

@@ -1,10 +1,10 @@
-### 🚀 SimpleTodo – Smart Todo App with AI Assist
+## 🚀 SimpleTodo – Smart Todo App with AI Assist
 
 SimpleTodo is a modern Next.js Todo application with a premium glassmorphism UI and AI-powered features. It helps users manage tasks efficiently and improves productivity using AI assistance like task correction and smart suggestions.
 
-### ✨ Features
+## ✨ Features
 
-# 📝 Core Todo Features
+### 📝 Core Todo Features
 
 - ➕ Add new tasks
 
@@ -22,7 +22,7 @@ SimpleTodo is a modern Next.js Todo application with a premium glassmorphism UI 
 
 - ⚡ Optimistic UI updates
 
-# 🤖 AI-Powered Features (Groq AI)
+### 🤖 AI-Powered Features (Groq AI)
 
 - ✨ AI Assist – Improve/correct task text (grammar & spelling)
 
@@ -44,9 +44,9 @@ SimpleTodo is a modern Next.js Todo application with a premium glassmorphism UI 
 
 state
 
-### 🛠 Tech Stack
+## 🛠 Tech Stack
 
-# Frontend
+### Frontend
 
 - Next.js (App Router)
 
@@ -58,19 +58,19 @@ state
 
 - React Icons
 
-# Backend
+### Backend
 
 - Next.js API Routes
 
 - Groq AI SDK
 
-# Database
+### Database
 
 - MongoDB
 
 - Mongoose
 
-### 📂 Project Structure
+## 📂 Project Structure
 
 ```bash
 
@@ -92,7 +92,7 @@ eduflow-ai/
 
 ```
 
-## 🔐 Environment Variables
+### 🔐 Environment Variables
 
 Create a .env.local file in the root directory:
 
@@ -119,7 +119,7 @@ GROQ_API_KEY =
 
 ## ▶️ Getting Started
 
-# 1️⃣ Install Dependencies
+### 1️⃣ Install Dependencies
 
 ```bash
 npm install
@@ -137,9 +137,9 @@ App will run on:
 http://localhost:3000
 ```
 
-# 🤖 AI Assist – How It Works
+## 🤖 AI Assist – How It Works
 
-# Backend Logic
+### Backend Logic
 
 - Uses Groq LLaMA 3.1 model
 

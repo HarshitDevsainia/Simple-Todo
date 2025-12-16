@@ -8,9 +8,9 @@ export async function POST(req: Request) {
   try {
     const { title } = await req.json();
 
-    if (!title || title.length < 5) {
-      return Response.json({ error: "Task too short" }, { status: 400 });
-    }
+    // if (!title || title.length < 5) {
+    //   return Response.json({ error: "Task too short" }, { status: 400 });
+    // }
 
     const completion = await groq.chat.completions.create({
       model: "llama-3.1-8b-instant", // ✅ FAST & FREE
